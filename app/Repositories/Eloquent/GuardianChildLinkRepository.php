@@ -21,9 +21,11 @@ class GuardianChildLinkRepository extends BaseRepository implements GuardianChil
             ->where('child_id', $childId)
             ->join('guardians', 'guardian_child_links.guardian_id', '=', 'guardians.id')
             ->get([
-                'guardian_child_links.*',
-                'guardians.name as guardian_name',
-                'guardians.email as guardian_email',
+                'guardian_child_links.id as link_id',
+                'guardian_child_links.relationship_code as relationship',
+                'guardian_child_links.relationship_code as relationship_code',
+                'guardian_child_links.guardian_id as guardian_id',
+                'guardians.fullName as guardian_name',
                 'guardians.phone as guardian_phone',
             ]);
     }
@@ -34,9 +36,12 @@ class GuardianChildLinkRepository extends BaseRepository implements GuardianChil
             ->where('guardian_id', $guardianId)
             ->join('children', 'guardian_child_links.child_id', '=', 'children.id')
             ->get([
-                'guardian_child_links.*',
-                'children.name as child_name',
-                'children.birth_date as child_birth_date',
+                'guardian_child_links.id as link_id',
+                'guardian_child_links.relationship_code as relationship',
+                'guardian_child_links.relationship_code as relationship_code',
+                'guardian_child_links.child_id as child_id',
+                'children.fullName as child_name',
+                'children.birthDate as child_birth_date',
             ]);
     }
 }

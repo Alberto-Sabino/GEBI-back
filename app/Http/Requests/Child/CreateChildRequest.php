@@ -10,9 +10,9 @@ class CreateChildRequest extends BaseRequest
     {
         return [
             'fullName' => 'required',
-            'birthDate' => 'required',
+            'birthDate' => 'required|date',
             'commonCongregation' => 'required',
-            'gender' => 'required'
+            'gender' => 'required|in:M,F'
         ];
     }
 }

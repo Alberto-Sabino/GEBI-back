@@ -2,4 +2,10 @@
 
 namespace App\Repositories\Contracts;
 
-interface GuardianRepositoryInterface extends BaseRepositoryInterface {}
+use App\Http\Requests\PaginationAndFiltersRequest;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
+interface GuardianRepositoryInterface extends BaseRepositoryInterface
+{
+    public function getReportData(PaginationAndFiltersRequest $request): LengthAwarePaginator;
+}

@@ -21,7 +21,7 @@ class CreateGuardianChildLinkController extends Controller
                 ->create($request->all());
             DB::commit();
 
-            return response()->json([], $link->exists ?  204 : 400);
+            return response()->json([], $link->exists ?  201 : 400);
         } catch (\Exception $e) {
             DB::rollBack();
             throw $e;

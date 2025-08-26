@@ -13,6 +13,10 @@ use App\Http\Controllers\Guardian\UpdateGuardianController;
 use App\Http\Controllers\GuardianChildLinks\CreateGuardianChildLinkController;
 use App\Http\Controllers\GuardianChildLinks\DeleteGuardianChildLinkController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Reports\GetAuditsReportController;
+use App\Http\Controllers\Reports\GetChildenReportController;
+use App\Http\Controllers\Reports\GetGuardiansReportController;
+use App\Http\Controllers\Reports\GetUsersReportController;
 use App\Http\Controllers\User\CreateUserController;
 use App\Http\Controllers\User\DeleteUserController;
 use App\Http\Controllers\User\GetUsersListController;
@@ -64,4 +68,11 @@ Route::prefix('guardians')->group(function () {
 Route::prefix('links')->group(function () {
     Route::post('/', [CreateGuardianChildLinkController::class, 'create']);
     Route::delete('/{id}', [DeleteGuardianChildLinkController::class, 'delete']);
+});
+
+Route::prefix('reports')->group(function () {
+    Route::get('/audits', [GetAuditsReportController::class, 'get']);
+    Route::get('/children', [GetChildenReportController::class, 'get']);
+    Route::get('/guardians', [GetGuardiansReportController::class, 'get']);
+    Route::get('/users', [GetUsersReportController::class, 'get']);
 });

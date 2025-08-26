@@ -2,14 +2,18 @@
 
 namespace App\Services\AuditServices;
 
+use App\Http\Requests\PaginationAndFiltersRequest;
 use App\Repositories\Contracts\AuditRepositoryInterface;
-use App\Services\BaseServices\ListBaseService;
 
-class GetAuditListService extends ListBaseService
+class GetAuditListService
 {
     public function __construct(
         protected AuditRepositoryInterface $repository
-    ) {
-        parent::__construct($repository);
+    ) {}
+
+    public function listAudits(PaginationAndFiltersRequest $request)
+    {
+        return $this->repository
+            ->listAudits($request);
     }
 }

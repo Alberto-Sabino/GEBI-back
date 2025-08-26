@@ -20,6 +20,7 @@ class CreateGuardianController extends Controller
             $guardian = $this->createGuardianService
                 ->create($request->all());
             DB::commit();
+
             return response()->json([], $guardian->exists ? 201 : 400);
         } catch (\Exception $e) {
             DB::rollBack();
