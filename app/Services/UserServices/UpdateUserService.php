@@ -12,4 +12,15 @@ class UpdateUserService extends UpdateBaseService
     ) {
         parent::__construct($repository);
     }
+
+    public function update(int $id, array $data): bool
+    {
+        // Removing password from data if it's empty...
+        // (pass can only be updated on the forgot password flow)
+        if (isset($data['password']) && empty($data['password'])) {
+            unset($data['password']);
+        }
+
+        return parent::update($id, $data);
+    }
 }

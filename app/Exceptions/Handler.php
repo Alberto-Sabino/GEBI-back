@@ -31,42 +31,28 @@ class Handler extends ExceptionHandler
     {
         $this->logExceptionInfos($exception);
 
-        if ($exception instanceof TreatedException) {
+        if ($exception instanceof TreatedException || $exception->getCode() === 422) {
             return response()->json([
                 'message' => $exception->getMessage()
             ], $exception->getCode());
         }
 
-        if (str_contains($exception->getMessage(), 'SQL')) {
-            return response()->json([
-                'message' => 'No momento estamos passando por instabilidades, tente novamente mais tarde.'
-            ], 500);
-        }
-
         return response()->json([
             'message' => 'No momento estamos passando por instabilidades, tente novamente mais tarde.',
-            'error' => $exception->getMessage()
         ], 500);
     }
 
     private function logExceptionInfos(Throwable $exception): void
     {
         Log::channel('debug')->info(
-            "\n" .
+            'Request-ID: ' . session('request-id') . "\n" .
                 'Exception: ' . get_class($exception) . "\n" .
                 'File: ' . $exception->getFile() . "\n" .
                 'Line: ' . $exception->getLine() . "\n"
         );
 
         Log::channel('exceptions')->error(
-            "{$exception->getMessage()}\n",
-            [
-                'file' => $exception->getFile(),
-                'line' => $exception->getLine(),
-                'trace' => json_encode(array_slice($exception->getTrace(), 0, 2), JSON_PRETTY_PRINT)
-            ]
+            'Request-ID: ' . session('request-id') . "\n {$exception->getTraceAsString()} \n"
         );
-
-        Log::channel('exceptions')->error("\n");
     }
 }

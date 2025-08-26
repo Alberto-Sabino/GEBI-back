@@ -11,13 +11,20 @@ class UpdateUserRequest extends BaseRequest
         return [
             'fullName' => 'sometimes|string',
             'document' => 'sometimes|string',
-            'password' => 'sometimes|string',
             'birthDate' => 'sometimes|date',
             'baptismYear' => 'sometimes|integer',
             'phone' => 'sometimes|string',
             'email' => 'sometimes|email',
-            'neighborhood' => 'sometimes|string',
+            'city' => 'sometimes|string',
             'commonCongregation' => 'sometimes|string'
         ];
+    }
+
+    // Ensure password is not updated through this request
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+            'password' => ''
+        ]);
     }
 }

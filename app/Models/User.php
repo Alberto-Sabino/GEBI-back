@@ -31,6 +31,11 @@ class User extends Model
         'baptismYear' => 'integer'
     ];
 
+    public function setDocumentAttribute($value): void
+    {
+        $this->attributes['document'] = preg_replace('/\D/', '', $value);
+    }
+
     public function setPasswordAttribute($value): void
     {
         $this->attributes['password'] = md5($value);

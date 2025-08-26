@@ -18,6 +18,7 @@ class AssignRequestIdToLogs
     public function handle(Request $request, Closure $next): Response
     {
         $requestId = (string) Str::uuid();
+        session(['request-id' => $requestId]);
 
         Log::withContext([
             'request-id' => $requestId

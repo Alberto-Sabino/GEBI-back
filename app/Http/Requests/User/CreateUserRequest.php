@@ -16,7 +16,7 @@ class CreateUserRequest extends BaseRequest
             'baptismYear' => 'required|integer',
             'phone' => 'required|string',
             'email' => 'required|email',
-            'neighborhood' => 'required|string',
+            'city' => 'required|string',
             'commonCongregation' => 'required|string'
         ];
     }
