@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class PaginationAndFiltersRequest extends BaseRequest
 {
@@ -10,11 +11,11 @@ class PaginationAndFiltersRequest extends BaseRequest
     private int $page;
     private int $size;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
-        $this->filters = $this->query('filter', []);
-        $this->page = $this->query('page', 1);
-        $this->size = $this->query('size', 25);
+        $this->filters = $request->input('filters', []);
+        $this->page = (int) $request->input('page', 1);
+        $this->size = (int) $request->input('size', 25);
     }
 
     public function getPagination(): array

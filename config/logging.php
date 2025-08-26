@@ -127,10 +127,17 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'debug' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/debug.log'),
+            'level' => 'debug',
+            'replace_placeholders' => true
+        ],
+
         'exceptions' => [
             'driver' => 'daily',
             'path' => storage_path('logs/exceptions.log'),
-            'level' => 'info',
+            'level' => 'error',
             'days' => 14,
             'replace_placeholders' => true,
         ],
