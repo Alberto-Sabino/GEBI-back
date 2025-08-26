@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Guardian;
 
 use App\Http\Controllers\Controller;
-use App\Services\UserServices\DeleteUserService;
+use App\Services\GuardianServices\DeleteGuardianService;
 use Illuminate\Support\Facades\DB;
 
-class DeleteUserController extends Controller
+class DeleteGuardianController extends Controller
 {
     public function __construct(
-        protected DeleteUserService $deleteUserService
+        protected DeleteGuardianService $deleteGuardianService
     ) {}
 
     public function delete(int $id): \Illuminate\Http\JsonResponse
     {
         try {
             DB::beginTransaction();
-            $deleted = $this->deleteUserService
+            $deleted = $this->deleteGuardianService
                 ->delete($id);
             DB::commit();
 

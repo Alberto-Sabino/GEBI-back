@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Services\UserServices\CreateUserService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CreateUserController extends Controller
@@ -18,10 +17,8 @@ class CreateUserController extends Controller
     {
         try {
             DB::beginTransaction();
-
             $user = $this->createUserService
                 ->create($request->all());
-
             DB::commit();
 
             return response()->json([], $user->exists ? 201 : 400);

@@ -4,16 +4,16 @@ namespace App\Services\GuardianChildLinkServices;
 
 use App\Repositories\Contracts\GuardianChildLinkRepositoryInterface;
 
-class ListGuardianChildLinkByChildIdService
+class ListGuardianChildLinkByGuardianIdService
 {
     public function __construct(
         protected GuardianChildLinkRepositoryInterface $repository,
     ) {}
 
-    public function list (int $childId): array
+    public function list(int $guardianId): array
     {
         return $this->repository
-            ->listByChildId($childId)
+            ->listByGuardianId($guardianId)
             ->toArray();
     }
 }

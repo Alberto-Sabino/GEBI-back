@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Guardian;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationAndFiltersRequest;
-use App\Services\UserServices\GetUsersListService;
+use App\Services\GuardianServices\GetGuardiansListService;
 
-class GetUsersListController extends Controller
+class GetGuardianListController extends Controller
 {
     public function __construct(
-        protected GetUsersListService $getUsersListService
+        protected GetGuardiansListService $getGuardiansListService
     ) {}
 
     public function get(PaginationAndFiltersRequest $request): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
-        return $this->getUsersListService
+        return $this->getGuardiansListService
             ->list($request);
     }
 }

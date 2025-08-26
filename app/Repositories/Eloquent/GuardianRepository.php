@@ -9,7 +9,7 @@ use App\Repositories\Contracts\GuardianRepositoryInterface;
 class GuardianRepository extends BaseRepository implements GuardianRepositoryInterface
 {
     public function __construct(
-        protected Guardian $model
+        Guardian $model
     ) {
         parent::__construct($model);
     }

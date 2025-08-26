@@ -27,4 +27,16 @@ class GuardianChildLinkRepository extends BaseRepository implements GuardianChil
                 'guardians.phone as guardian_phone',
             ]);
     }
+
+    public function listByGuardianId(int $guardianId): Collection
+    {
+        return $this->model
+            ->where('guardian_id', $guardianId)
+            ->join('children', 'guardian_child_links.child_id', '=', 'children.id')
+            ->get([
+                'guardian_child_links.*',
+                'children.name as child_name',
+                'children.birth_date as child_birth_date',
+            ]);
+    }
 }

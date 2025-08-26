@@ -2,6 +2,7 @@
 
 namespace App\Services\BaseServices;
 
+use App\Exceptions\TreatedException;
 use App\Repositories\Contracts\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,9 +12,15 @@ class GetByIdBaseService
         protected BaseRepositoryInterface $repository
     ) {}
 
-    public function getById(int $id): ?Model
+    public function getById(int $id): Model
     {
-        return $this->repository
+        $model = $this->repository
             ->getById($id);
+
+        if (!$model) {
+            throw new TreatedException('Registro não encontrado, verifique o identificador da solicitação.', 404);
+        }
+
+        return $model;
     }
 }

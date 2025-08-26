@@ -9,7 +9,7 @@ use App\Repositories\Contracts\ChildRepositoryInterface;
 class ChildRepository extends BaseRepository implements ChildRepositoryInterface
 {
     public function __construct(
-        protected Child $child
+        Child $child
     ) {
         parent::__construct($child);
     }

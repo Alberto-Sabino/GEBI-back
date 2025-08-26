@@ -17,7 +17,6 @@ class UpdateGuardianService extends UpdateBaseService
 
     public function update(int $id, array $data): bool
     {
-
         $updated = parent::update($id, $data);
 
         if ($updated) {

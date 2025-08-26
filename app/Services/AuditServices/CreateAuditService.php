@@ -13,7 +13,7 @@ class CreateAuditService extends CreateBaseService
     use LoggedUserTrait;
 
     public function __construct(
-        protected AuditRepositoryInterface $repository
+        AuditRepositoryInterface $repository
     ) {
         parent::__construct($repository);
     }
@@ -24,7 +24,7 @@ class CreateAuditService extends CreateBaseService
      * Adds additional audit information such as user ID, date and time
      * to the data before creating the audit record.
      *
-     * @param array $data The data for creating the audit record. ['action' => 'required', 'personal_token' => 'required', ...]
+     * @param array $data The data for creating the audit record. ['action' => 'required', ...]
      * @return Audit The created audit instance.
      */
 
@@ -36,7 +36,7 @@ class CreateAuditService extends CreateBaseService
 
     private function addAuditInfos(array &$data): void
     {
-        $data['user_id'] = $this->getLoggedUserId($data['personal_token']);
+        $data['user_id'] = $this->getLoggedUserId();
         $data['date'] = Carbon::now()->toDateString();
         $data['time'] = Carbon::now()->toTimeString();
     }

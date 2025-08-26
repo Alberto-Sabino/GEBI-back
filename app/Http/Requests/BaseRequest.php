@@ -21,7 +21,8 @@ class BaseRequest extends FormRequest
             'email' => 'O campo :attribute precisa ser um e-mail válido.',
             'date' => 'O campo :attribute precisa ser uma data válida.',
             'integer' => 'O campo :attribute precisa ser um número inteiro.',
-            'sometimes' => 'Se o campo :attribute for enviado, ele não pode ser vazio.'
+            'sometimes' => 'Se o campo :attribute for enviado, ele não pode ser vazio.',
+            'in' => 'O campo :attribute não possui um valor válido para este campo.'
         ];
     }
 }

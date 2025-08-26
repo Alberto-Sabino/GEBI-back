@@ -9,7 +9,7 @@ use App\Repositories\Contracts\AuditRepositoryInterface;
 class AuditRepository extends BaseRepository implements AuditRepositoryInterface
 {
     public function __construct(
-        protected Audit $model
+        Audit $model
     ) {
         parent::__construct($model);
     }

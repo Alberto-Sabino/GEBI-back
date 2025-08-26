@@ -13,4 +13,14 @@ class RelationshipEnum
     const GRANDMOTHER_GRANDFATHER_LABEL = 'Avó/Avô';
     const AUNT_UNCLE_LABEL = 'Tia/Tio';
     const SISTER_BROTHER_LABEL = 'Irmã/Irmão';
+
+    public static function listCodes(): array
+    {
+        return [
+            self::MOTHER_FATHER_CODE,
+            self::GRANDMOTHER_GRANDFATHER_CODE,
+            self::AUNT_UNCLE_CODE,
+            self::SISTER_BROTHER_CODE
+        ];
+    }
 }
