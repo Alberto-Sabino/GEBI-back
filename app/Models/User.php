@@ -41,8 +41,8 @@ class User extends Model
         $this->attributes['password'] = md5($value);
     }
 
-    public function getBirthDateAttribute(): Carbon
+    public function getBirthDateAttribute($value): string
     {
-        return Carbon::parse($this->birthDate);
+        return Carbon::parse($value)->format('d/m/Y');
     }
 }

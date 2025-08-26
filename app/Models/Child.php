@@ -17,8 +17,22 @@ class Child extends Model
         'gender'
     ];
 
-    public function getBirthDateAttribute(): Carbon
+    public function getBirthDateAttribute($value): string
     {
-        return Carbon::parse($this->birthDate);
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function getAgeAttribute(): int
+    {
+        return Carbon::parse($this->attributes['birthDate'])->age;
+    }
+
+    public function getGenderLabelAttribute(): string
+    {
+        return match ($this->attributes['gender']) {
+            'M' => 'Masculino',
+            'F' => 'Feminino',
+            default => 'Não informado',
+        };
     }
 }

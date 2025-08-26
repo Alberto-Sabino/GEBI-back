@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Audit extends Model
@@ -21,6 +22,15 @@ class Audit extends Model
         'user_id' => 'integer',
         'child_id' => 'integer',
         'guardian_id' => 'integer',
-        'date' => 'date'
     ];
+
+    public function getDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function getTimeAttribute($value)
+    {
+        return Carbon::parse($value)->format('H:i:s');
+    }
 }
