@@ -37,7 +37,10 @@ class Handler extends ExceptionHandler
             ], $exception->getCode());
         }
 
-        return parent::render($request, $exception);
+        return response()->json([
+            'message' => 'No momento estamos passando por instabilidades, tente novamente mais tarde.',
+            'error' => $exception->getMessage()
+        ], 500);
     }
 
     private function logExceptionInfos(Throwable $exception): void

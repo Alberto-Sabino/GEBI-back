@@ -6,6 +6,7 @@ use App\Exceptions\TreatedException;
 use App\Models\User;
 use App\Services\UserServices\AuthUserService;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class LoginService
@@ -23,10 +24,10 @@ class LoginService
             throw new TreatedException('Credenciais inválidas!', 401);
         }
 
-        $personal_token = Str::random(32);
-        Cache::put($personal_token, $user, now()->addHours(6));
+        $personalToken = Str::random(32);
+        Cache::put($personalToken, $user, now()->addHours(3));
 
-        $user->personal_token = $personal_token;
+        $user->personalToken = $personalToken;
         return $user;
     }
 }

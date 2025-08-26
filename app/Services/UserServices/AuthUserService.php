@@ -14,6 +14,6 @@ class AuthUserService
     public function auth(string $document, string $password): ?User
     {
         return $this->repository
-            ->auth($document, bcrypt($password));
+            ->auth($document, md5($password));
     }
 }

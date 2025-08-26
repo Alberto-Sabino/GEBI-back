@@ -33,7 +33,7 @@ class User extends Model
 
     public function setPasswordAttribute($value): void
     {
-        $this->attributes['password'] = bcrypt($value);
+        $this->attributes['password'] = md5($value);
     }
 
     public function getBirthDateAttribute(): Carbon
