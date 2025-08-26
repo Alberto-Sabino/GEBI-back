@@ -43,7 +43,9 @@ class Handler extends ExceptionHandler
     private function logExceptionInfos(Throwable $exception): void
     {
         Log::channel('exceptions')->info(
-            'File: ' . $exception->getFile() . "\n" .
+            "\n" .
+                'Exception: ' . get_class($exception) . "\n" .
+                'File: ' . $exception->getFile() . "\n" .
                 'Line: ' . $exception->getLine() . "\n"
         );
 
@@ -51,6 +53,7 @@ class Handler extends ExceptionHandler
             $exception->getMessage() . "\n",
             array_slice($exception->getTrace(), 0, 2)
         );
+
         Log::channel('exceptions')->notice("\n");
     }
 }

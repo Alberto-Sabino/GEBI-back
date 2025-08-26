@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Repositories\Contracts;
+namespace App\Repositories\Eloquent;
 
 use App\Http\Requests\PaginationAndFiltersRequest;
+use App\Repositories\Contracts\BaseRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;

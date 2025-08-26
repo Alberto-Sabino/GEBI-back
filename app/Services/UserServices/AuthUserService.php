@@ -2,7 +2,6 @@
 
 namespace App\Services\UserServices;
 
-use App\Exceptions\TreatedException;
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 

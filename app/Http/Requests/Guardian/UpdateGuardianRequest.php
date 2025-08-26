@@ -4,7 +4,7 @@ namespace App\Http\Requests\Guardian;
 
 use App\Http\Requests\BaseRequest;
 
-class CreateGuardianRequest extends BaseRequest
+class UpdateGuardianRequest extends BaseRequest
 {
     public function rules(): array
     {

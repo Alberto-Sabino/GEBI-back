@@ -3,17 +3,17 @@
 namespace App\Providers;
 
 use App\Repositories\Contracts\AuditRepositoryInterface;
-use App\Repositories\Contracts\BaseRepository;
 use App\Repositories\Contracts\BaseRepositoryInterface;
 use App\Repositories\Contracts\ChildRepositoryInterface;
 use App\Repositories\Contracts\GuardianChildLinkRepositoryInterface;
 use App\Repositories\Contracts\GuardianRepositoryInterface;
-use App\Repositories\Contracts\UserRepository;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Eloquent\AuditRepository;
+use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Eloquent\ChildRepository;
 use App\Repositories\Eloquent\GuardianChildLinkRepository;
 use App\Repositories\Eloquent\GuardianRepository;
+use App\Repositories\Eloquent\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Audit;
-use App\Repositories\Contracts\BaseRepository;
 use App\Repositories\Contracts\AuditRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 
 class AuditRepository extends BaseRepository implements AuditRepositoryInterface
 {

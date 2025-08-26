@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\GuardianChildLink;
-use App\Repositories\Contracts\BaseRepository;
+use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Contracts\GuardianChildLinkRepositoryInterface;
 use Illuminate\Support\Collection;
 
