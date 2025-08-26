@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('audits', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('child_id');
-            $table->unsignedBigInteger('guardian_id');
+            $table->unsignedBigInteger('child_id')->nullable();
+            $table->unsignedBigInteger('guardian_id')->nullable();
             $table->string('action');
             $table->date('date');
             $table->time('time');
@@ -34,6 +34,11 @@ return new class extends Migration
                 ->references('id')
                 ->on('guardians')
                 ->onDelete('cascade');
+
+            $table->index('user_id');
+            $table->index('child_id');
+            $table->index('guardian_id');
+            $table->index(['date', 'time']);
         });
     }
 

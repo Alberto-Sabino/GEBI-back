@@ -17,6 +17,12 @@ return new class extends Migration
             $table->date('birthDate');
             $table->string('commonCongregation');
             $table->char('gender', 1)->comment('M or F');
+            $table->timestamps();
+
+            $table->index('fullName');
+            $table->index('birthDate');
+            $table->index('commonCongregation');
+            $table->index('gender');
         });
     }
 

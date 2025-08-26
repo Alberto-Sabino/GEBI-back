@@ -28,6 +28,10 @@ return new class extends Migration
                 ->onDelete('cascade');
                 
             $table->timestamps();
+
+            $table->index(['guardian_id']);
+            $table->index(['child_id']);
+            $table->index(['relationship_code']);
         });
     }
 

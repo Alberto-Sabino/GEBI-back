@@ -23,6 +23,11 @@ return new class extends Migration
             $table->string('city');
             $table->string('commonCongregation');
             $table->timestamps();
+
+            $table->index('fullName');
+            $table->index('birthDate');
+            $table->index('city');
+            $table->index('commonCongregation');
         });
     }
 

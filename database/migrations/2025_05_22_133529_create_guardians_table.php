@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('city');
             $table->string('commonCongregation');
             $table->timestamps();
+
+            $table->index('phone');
+            $table->index('city');
+            $table->index('commonCongregation');
         });
     }
 
