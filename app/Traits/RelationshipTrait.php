@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use App\Enum\RelationshipEnum;
 
-class RelationshipTrait
+trait RelationshipTrait
 {
     /**
      * Get the relationship label based on the relationship code.
@@ -12,7 +12,7 @@ class RelationshipTrait
      * @param RelationshipEnum $relationshipCode
      * @return string|null
      */
-    public function getRelationshipLabel(RelationshipEnum $relationshipCode): ?string
+    public function getRelationshipLabel(RelationshipEnum|string $relationshipCode): ?string
     {
         return match ($relationshipCode) {
             RelationshipEnum::MOTHER_FATHER_CODE => RelationshipEnum::MOTHER_FATHER_LABEL,

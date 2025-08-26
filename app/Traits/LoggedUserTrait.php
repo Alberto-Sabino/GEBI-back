@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 trait LoggedUserTrait
 {
@@ -15,8 +16,7 @@ trait LoggedUserTrait
 
     public function getLoggedUserId(): ?int
     {
-        $personalToken = session('personal-token');
-        $user = $this->getLoggedUser($personalToken);
+        $user = $this->getLoggedUser();
         return $user ? $user->id : null;
     }
 }
