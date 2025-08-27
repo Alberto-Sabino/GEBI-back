@@ -11,7 +11,6 @@ class CreateUserRequest extends BaseRequest
         return [
             'fullName' => 'required|string',
             'document' => 'required|string',
-            'password' => 'required|string',
             'birthDate' => 'required|date',
             'baptismYear' => 'required|integer',
             'phone' => 'required|string',
