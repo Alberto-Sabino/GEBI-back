@@ -1,26 +1,34 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\UpdatePasswordController;
+
 use App\Http\Controllers\Child\CreateChildController;
 use App\Http\Controllers\Child\DeleteChildController;
 use App\Http\Controllers\Child\GetChildDetailsController;
 use App\Http\Controllers\Child\GetChildListController;
 use App\Http\Controllers\Child\UpdateChildController;
+
 use App\Http\Controllers\Guardian\CreateGuardianController;
 use App\Http\Controllers\Guardian\DeleteGuardianController;
 use App\Http\Controllers\Guardian\GetGuardianDetailsController;
 use App\Http\Controllers\Guardian\GetGuardianListController;
 use App\Http\Controllers\Guardian\UpdateGuardianController;
+
 use App\Http\Controllers\GuardianChildLinks\CreateGuardianChildLinkController;
 use App\Http\Controllers\GuardianChildLinks\DeleteGuardianChildLinkController;
-use App\Http\Controllers\Login\LoginController;
+
 use App\Http\Controllers\Reports\GetAuditsReportController;
 use App\Http\Controllers\Reports\GetChildenReportController;
 use App\Http\Controllers\Reports\GetGuardiansReportController;
 use App\Http\Controllers\Reports\GetUsersReportController;
+
 use App\Http\Controllers\User\CreateUserController;
 use App\Http\Controllers\User\DeleteUserController;
 use App\Http\Controllers\User\GetUsersListController;
 use App\Http\Controllers\User\UpdateUserController;
+
 use App\Http\Middleware\SavePersonalTokenInSession;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +43,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Public routes
+
 Route::withoutMiddleware(SavePersonalTokenInSession::class)->group(function () {
     Route::post('/login', [LoginController::class, 'login']);
+    Route::put('/password/{id}', [UpdatePasswordController::class, 'update']);
+    Route::put('/password/reset/{id}', [ResetPasswordController::class, 'reset']);
 });
 
 Route::prefix('users')->group(function () {
