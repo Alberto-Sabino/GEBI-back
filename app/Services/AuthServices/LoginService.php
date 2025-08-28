@@ -6,7 +6,6 @@ use App\Exceptions\TreatedException;
 use App\Models\User;
 use App\Services\UserServices\AuthUserService;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class LoginService

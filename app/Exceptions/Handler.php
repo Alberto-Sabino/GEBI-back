@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -31,10 +32,16 @@ class Handler extends ExceptionHandler
     {
         $this->logExceptionInfos($exception);
 
-        if ($exception instanceof TreatedException || $exception->getCode() === 422) {
+        if ($exception instanceof TreatedException) {
             return response()->json([
                 'message' => $exception->getMessage()
             ], $exception->getCode());
+        }
+
+        if ($exception instanceof ValidationException) {
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 422);
         }
 
         return response()->json([

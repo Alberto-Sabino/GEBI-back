@@ -26,7 +26,7 @@ trait PasswordTrait
         return str_shuffle($password);
     }
 
-    public function validate(string $password): bool
+    public function isPasswordValid(string $password): bool
     {
         return preg_match('/[A-Z]/', $password) &&
             preg_match('/[a-z]/', $password) &&
