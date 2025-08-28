@@ -5,6 +5,15 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property int|null $child_id
+ * @property int|null $guardian_id
+ * @property string $action
+ * @property string $date
+ * @property string $time
+ */
 class Audit extends Model
 {
     public $timestamps = false;

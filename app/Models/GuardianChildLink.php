@@ -6,6 +6,13 @@ use App\Enum\RelationshipEnum;
 use App\Traits\RelationshipTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $guardian_id
+ * @property int $child_id
+ * @property string $relationship_code
+ * @property string $relationship
+ */
 class GuardianChildLink extends Model
 {
     use RelationshipTrait;
