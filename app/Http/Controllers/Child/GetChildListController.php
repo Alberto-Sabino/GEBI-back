@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Child;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationAndFiltersRequest;
 use App\Services\ChildServices\GetChildrenListService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class GetChildListController extends Controller
 {
@@ -12,7 +13,7 @@ class GetChildListController extends Controller
         protected GetChildrenListService $getChildrenListService
     ) {}
 
-    public function get(PaginationAndFiltersRequest $request): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    public function get(PaginationAndFiltersRequest $request): LengthAwarePaginator
     {
         return $this->getChildrenListService
             ->list($request);

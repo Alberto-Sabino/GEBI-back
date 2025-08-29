@@ -59,14 +59,12 @@ class Handler extends ExceptionHandler
         );
 
         Log::channel('exceptions')->error(
-            'Request-ID: ' . session('request-id'),
-            [
-                'exception' => get_class($exception),
-                'message' => $exception->getMessage(),
-                'file' => $exception->getFile(),
-                'line' => $exception->getLine(),
-                'stacktrace' => implode("\n", array_slice($exception->getTraceAsString() ? explode("\n", $exception->getTraceAsString()) : [], 0, 2))
-            ]
+            "\n\nRequest-ID: " . session('request-id') . "\n" .
+                'Exception: ' . get_class($exception) . "\n" .
+                'Message: ' . $exception->getMessage() . "\n" .
+                'File: ' . $exception->getFile() . "\n" .
+                'Line: ' . $exception->getLine() . "\n",
+            array_slice($exception->getTrace(), 0, 10)
         );
     }
 }

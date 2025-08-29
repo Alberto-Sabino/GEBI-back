@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\ClassRoom;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationAndFiltersRequest;
-use App\Services\UserServices\GetUsersListService;
+use App\Services\ClassRoomServices\GetClassRoomListService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class GetUsersListController extends Controller
+class GetClassRoomListController extends Controller
 {
     public function __construct(
-        protected GetUsersListService $getUsersListService
+        protected GetClassRoomListService $getClassRoomListService
     ) {}
 
     public function get(PaginationAndFiltersRequest $request): LengthAwarePaginator
     {
-        return $this->getUsersListService
+        return $this->getClassRoomListService
             ->list($request);
     }
 }

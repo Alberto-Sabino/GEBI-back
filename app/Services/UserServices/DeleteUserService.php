@@ -5,11 +5,15 @@ namespace App\Services\UserServices;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Services\BaseServices\DeleteBaseService;
 
-class DeleteUserService extends DeleteBaseService
+class DeleteUserService
 {
     public function __construct(
-        UserRepositoryInterface $repository
-    ) {
-        parent::__construct($repository);
+        protected UpdateUserService $updateUserService
+    ) {}
+
+    public function delete(int $id): bool
+    {
+        return $this->updateUserService
+            ->update($id, ['active' => false]);
     }
 }

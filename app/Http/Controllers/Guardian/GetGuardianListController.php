@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guardian;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationAndFiltersRequest;
 use App\Services\GuardianServices\GetGuardiansListService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class GetGuardianListController extends Controller
 {
@@ -12,7 +13,7 @@ class GetGuardianListController extends Controller
         protected GetGuardiansListService $getGuardiansListService
     ) {}
 
-    public function get(PaginationAndFiltersRequest $request): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    public function get(PaginationAndFiltersRequest $request): LengthAwarePaginator
     {
         return $this->getGuardiansListService
             ->list($request);

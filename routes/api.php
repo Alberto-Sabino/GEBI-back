@@ -10,6 +10,18 @@ use App\Http\Controllers\Child\GetChildDetailsController;
 use App\Http\Controllers\Child\GetChildListController;
 use App\Http\Controllers\Child\UpdateChildController;
 
+use App\Http\Controllers\ClassRoom\CreateClassRoomController;
+use App\Http\Controllers\ClassRoom\DeleteClassRoomController;
+use App\Http\Controllers\ClassRoom\GetClassRoomListController;
+use App\Http\Controllers\ClassRoom\GetClassRoomSummaryController;
+use App\Http\Controllers\ClassRoom\UpdateClassRoomController;
+
+use App\Http\Controllers\ClassRoom\RegisterClassRoomChildEntryController;
+use App\Http\Controllers\ClassRoom\RegisterClassRoomChildExitController;
+
+use App\Http\Controllers\ClassRoom\RegisterClassRoomUserEntryController;
+use App\Http\Controllers\ClassRoom\RegisterClassRoomUserExitController;
+
 use App\Http\Controllers\Guardian\CreateGuardianController;
 use App\Http\Controllers\Guardian\DeleteGuardianController;
 use App\Http\Controllers\Guardian\GetGuardianDetailsController;
@@ -21,6 +33,8 @@ use App\Http\Controllers\GuardianChildLinks\DeleteGuardianChildLinkController;
 
 use App\Http\Controllers\Reports\GetAuditsReportController;
 use App\Http\Controllers\Reports\GetChildenReportController;
+use App\Http\Controllers\Reports\GetClassRoomChildrenReportController;
+use App\Http\Controllers\Reports\GetClassRoomUsersReportController;
 use App\Http\Controllers\Reports\GetGuardiansReportController;
 use App\Http\Controllers\Reports\GetUsersReportController;
 
@@ -50,12 +64,14 @@ Route::withoutMiddleware(SavePersonalTokenInSession::class)->group(function () {
     Route::put('/password/reset/{id}', [ResetPasswordController::class, 'reset']);
 });
 
+
 Route::prefix('users')->group(function () {
     Route::get('/', [GetUsersListController::class, 'get']);
     Route::post('/', [CreateUserController::class, 'create']);
     Route::put('/{id}', [UpdateUserController::class, 'update']);
     Route::delete('/{id}', [DeleteUserController::class, 'delete']);
 });
+
 
 Route::prefix('children')->group(function () {
     Route::get('/', [GetChildListController::class, 'get']);
@@ -66,6 +82,7 @@ Route::prefix('children')->group(function () {
     Route::delete('/{id}', [DeleteChildController::class, 'delete']);
 });
 
+
 Route::prefix('guardians')->group(function () {
     Route::get('/', [GetGuardianListController::class, 'get']);
     Route::get('/{id}', [GetGuardianDetailsController::class, 'get']);
@@ -75,14 +92,41 @@ Route::prefix('guardians')->group(function () {
     Route::delete('/{id}', [DeleteGuardianController::class, 'delete']);
 });
 
+
 Route::prefix('links')->group(function () {
     Route::post('/', [CreateGuardianChildLinkController::class, 'create']);
     Route::delete('/{id}', [DeleteGuardianChildLinkController::class, 'delete']);
 });
+
+
+Route::prefix('classrooms')->group(function () {
+    Route::get('/', [GetClassRoomListController::class, 'get']);
+    Route::get('/{id}', [GetClassRoomSummaryController::class, 'get']);
+
+    Route::post('/', [CreateClassRoomController::class, 'create']);
+    Route::put('/{id}', [UpdateClassRoomController::class, 'update']);
+    Route::delete('/{id}', [DeleteClassRoomController::class, 'delete']);
+
+
+    Route::prefix('entries')->group(function () {
+        Route::post('/user', [RegisterClassRoomUserEntryController::class, 'register']);
+        Route::post('/child', [RegisterClassRoomChildEntryController::class, 'register']);
+    });
+
+
+    Route::prefix('exits')->group(function () {
+        Route::post('/user', [RegisterClassRoomUserExitController::class, 'register']);
+        Route::post('/child', [RegisterClassRoomChildExitController::class, 'register']);
+    });
+});
+
 
 Route::prefix('reports')->group(function () {
     Route::get('/audits', [GetAuditsReportController::class, 'get']);
     Route::get('/children', [GetChildenReportController::class, 'get']);
     Route::get('/guardians', [GetGuardiansReportController::class, 'get']);
     Route::get('/users', [GetUsersReportController::class, 'get']);
+
+    Route::get('/classrooms/{id}/users', [GetClassRoomUsersReportController::class, 'get']);
+    Route::get('/classrooms/{id}/children', [GetClassRoomChildrenReportController::class, 'get']);
 });

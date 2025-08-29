@@ -47,7 +47,7 @@
 </head>
 
 <body>
-    <h2 style="text-align:center; margin-bottom: 25px;">{{ $title ?? 'Relatório' }}</h2>
+    <h3 style="text-align:center; margin-bottom: 25px;">{{ $title ?? 'Relatório' }}</h2>
     <table class="report-table">
         <thead>
             <tr>

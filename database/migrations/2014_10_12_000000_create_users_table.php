@@ -22,12 +22,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('city');
             $table->string('commonCongregation');
+            $table->boolean('active')->default(true);
             $table->timestamps();
 
             $table->index('fullName');
             $table->index('birthDate');
             $table->index('city');
             $table->index('commonCongregation');
+            $table->index('active');
         });
     }
 

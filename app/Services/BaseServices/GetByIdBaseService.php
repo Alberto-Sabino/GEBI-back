@@ -18,7 +18,7 @@ class GetByIdBaseService
             ->getById($id);
 
         if (!$model) {
-            throw new TreatedException('Registro não encontrado, verifique o identificador da solicitação.', 404);
+            throw new TreatedException('Registro não encontrado, verifique o identificador da solicitação.', 400);
         }
 
         return $model;
