@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Providers;
+
+use App\Repositories\Contracts\AuditRepositoryInterface;
+use App\Repositories\Contracts\BaseRepositoryInterface;
+use App\Repositories\Contracts\ChildRepositoryInterface;
+use App\Repositories\Contracts\ClassRoomChildRepositoryInterface;
+use App\Repositories\Contracts\ClassRoomRepositoryInterface;
+use App\Repositories\Contracts\ClassRoomUserRepositoryInterface;
+use App\Repositories\Contracts\GuardianChildLinkRepositoryInterface;
+use App\Repositories\Contracts\GuardianRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Eloquent\AuditRepository;
+use App\Repositories\Eloquent\BaseRepository;
+use App\Repositories\Eloquent\ChildRepository;
+use App\Repositories\Eloquent\ClassRoomChildRepository;
+use App\Repositories\Eloquent\ClassRoomRepository;
+use App\Repositories\Eloquent\ClassRoomUserRepository;
+use App\Repositories\Eloquent\GuardianChildLinkRepository;
+use App\Repositories\Eloquent\GuardianRepository;
+use App\Repositories\Eloquent\UserRepository;
+use Illuminate\Support\ServiceProvider;
+
+class RepositoryServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     */
+    public function register(): void
+    {
+        app()->bind(
+            BaseRepositoryInterface::class,
+            BaseRepository::class
+        );
+
+        app()->bind(
+            UserRepositoryInterface::class,
+            UserRepository::class
+        );
+
+        app()->bind(
+            ChildRepositoryInterface::class,
+            ChildRepository::class
+        );
+
+        app()->bind(
+            AuditRepositoryInterface::class,
+            AuditRepository::class
+        );
+
+        app()->bind(
+            GuardianRepositoryInterface::class,
+            GuardianRepository::class
+        );
+
+        app()->bind(
+            GuardianChildLinkRepositoryInterface::class,
+            GuardianChildLinkRepository::class
+        );
+
+        app()->bind(
+            ClassRoomRepositoryInterface::class,
+            ClassRoomRepository::class
+        );
+
+        app()->bind(
+            ClassRoomChildRepositoryInterface::class,
+            ClassRoomChildRepository::class
+        );
+
+        app()->bind(
+            ClassRoomUserRepositoryInterface::class,
+            ClassRoomUserRepository::class
+        );
+    }
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        //
+    }
+}
